@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName">
+            <value>java:comp/env/jdbc/openurp</value>
+        </property>
+    </bean>
+
+    <bean id="hibernateConfig">
+        <property name="properties">
+            <props merge="true">
+                <prop key="hibernate.default_batch_fetch_size">800</prop>
+                <prop key="hibernate.hbm2ddl.auto"></prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>
