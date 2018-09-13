@@ -16,16 +16,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.openurp.usst.ceurp.edu.grade;
+/**
+ *
+ */
+package org.openurp.usst.ceurp.edu.grade.gpa.policy;
 
-import org.openurp.edu.grade.GradeServiceModule;
-import org.openurp.usst.ceurp.edu.grade.gpa.policy.NoPassedElectiveFilter;
-import org.openurp.usst.ceurp.edu.grade.transcript.service.impl.TranscriptNextSemesterProvider;
+import java.util.List;
 
-public class CeurpGradeServiceModule extends GradeServiceModule {
+import org.beangle.commons.collection.CollectUtils;
+import org.openurp.edu.grade.course.model.CourseGrade;
+import org.openurp.edu.grade.course.service.impl.GradeFilter;
 
-  @Override
-  protected void doBinding() {
-    bind(TranscriptNextSemesterProvider.class, NoPassedElectiveFilter.class).shortName();
+/**
+ * @author zhouqi 2018年9月13日
+ *
+ */
+public class NoPassedElectiveFilter implements GradeFilter {
+
+  public List<CourseGrade> filter(List<CourseGrade> grades) {
+    List<CourseGrade> noPassedGrades = CollectUtils.newArrayList();
+    for (CourseGrade grade : grades) {
+      if (grade.isPassed() || !grade.getCourseType().getId().equals(40)) {
+        noPassedGrades.add(grade);
+      }
+    }
+    return noPassedGrades;
   }
 }

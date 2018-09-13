@@ -31,14 +31,14 @@ table.listTable td{
 [#macro displayGrades(grade)]
   <td>${grade.course.name}</td>
   <td align='center'>${grade.course.credits?if_exists}</td>
-  <td align='center'>${grade.getScoreText(GA)!}</td>
+  <td align='center'>${grade.scoreText!}</td>
   <td align='center'>[#if courseTypaAlias[grade.courseType.name]??]${courseTypaAlias[grade.courseType.name]}[#else]${grade.courseType.name[0..1]}[/#if]</td>
 [/#macro]
 
 [#macro displayYearGrade(first, second, gradeCnt)]
   <table style="font-size:${fontSize-2}pt" width="100%" class="listTable">
     <tr align="center">
-      <td colspan="8">[#if first?first??]${first?first.semester.schoolYear}|${first?first.semester.name}[#else]${second?first.semester.schoolYear}|${second?first.semester.name}[/#if]学年</td>
+      <td colspan="8">[#if first?first??]${first?first.semester.schoolYear}[#else]${second?first.semester.schoolYear}[/#if]学年</td>
     </tr>
     <tr align="center">
       <td colspan="4">${(first?first.semester.name)?default("春季")}</td>
@@ -166,7 +166,7 @@ table.listTable td{
       </tr>
     [#list externExamGrades.get(std)?if_exists as externExamGrade]
       <tr>
-        <td>英语证书类型:</td><td>${externExamGrade.subject.name}</td><td>获得日期:</td><td>${(externExamGrade.examOn?string("yyyy-MM"))!}</td><td>证书编号:</td><td>${externExamGrade.examNo!""}</td><td>分数:</td><td>${externExamGrade.scoreText!}</td>
+        <td>英语证书类型:</td><td>${externExamGrade.subject.enName}</td><td>获得日期:</td><td>${(externExamGrade.examOn?string("yyyy-MM"))!}</td><td>证书编号:</td><td>${externExamGrade.examNo!""}</td><td>分数:</td><td>${externExamGrade.scoreText!}</td>
       </tr>
     [/#list]
 
