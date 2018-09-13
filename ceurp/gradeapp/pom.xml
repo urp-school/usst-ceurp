@@ -5,7 +5,7 @@
     <artifactId>openurp-ceurp-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>org.openurp.usst</groupId>
+  <groupId>org.openurp.usst.ceurp</groupId>
   <artifactId>openurp-ceurp-gradeapp</artifactId>
   <packaging>war</packaging>
   <name>OpenURP CE-Urp GradeApp</name>
