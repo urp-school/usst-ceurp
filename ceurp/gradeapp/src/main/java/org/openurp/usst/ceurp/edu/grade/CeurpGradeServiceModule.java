@@ -20,12 +20,15 @@ package org.openurp.usst.ceurp.edu.grade;
 
 import org.openurp.edu.grade.GradeServiceModule;
 import org.openurp.usst.ceurp.edu.grade.gpa.policy.NoPassedElectiveFilter;
+import org.openurp.usst.ceurp.edu.grade.helper.CourseGradeDataHelper;
 import org.openurp.usst.ceurp.edu.grade.transcript.service.impl.TranscriptNextSemesterProvider;
+import org.openurp.usst.ceurp.edu.grade.transcript.service.impl.TranscriptSemesterGroupProvider;
 
 public class CeurpGradeServiceModule extends GradeServiceModule {
 
   @Override
   protected void doBinding() {
-    bind(TranscriptNextSemesterProvider.class, NoPassedElectiveFilter.class).shortName();
+    bind(CourseGradeDataHelper.class);
+    bind(TranscriptNextSemesterProvider.class, NoPassedElectiveFilter.class, TranscriptSemesterGroupProvider.class).shortName();
   }
 }

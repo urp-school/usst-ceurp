@@ -24,44 +24,29 @@ package org.openurp.usst.ceurp.edu.grade.transcript.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.beangle.commons.collection.CollectUtils;
-import org.beangle.commons.collection.Order;
-import org.beangle.commons.dao.EntityDao;
-import org.beangle.commons.dao.query.builder.OqlBuilder;
-import org.openurp.base.model.Semester;
 import org.openurp.edu.base.model.Student;
 import org.openurp.edu.grade.transcript.service.TranscriptDataProvider;
+import org.openurp.usst.ceurp.edu.grade.helper.CourseGradeDataHelper;
 
 /**
- * @author zhouqi 2018年9月7日
+ * @author zhouqi 2018年9月14日
  *
  */
-public class TranscriptNextSemesterProvider implements TranscriptDataProvider {
+public class TranscriptSemesterGroupProvider implements TranscriptDataProvider {
 
-  private EntityDao entityDao;
+  private CourseGradeDataHelper courseGradeDataHelper;
 
-  @SuppressWarnings("rawtypes")
   @Override
   public Object getDatas(List<Student> stds, Map<String, String> options) {
-    Map semestersMap = CollectUtils.newHashMap();
-
-    List<Semester> semesters = entityDao.search(OqlBuilder.from(Semester.class, "semester").orderBy(
-        Order.parse("semester.beginOn")));
-
-    for (int i = 0; i < semesters.size(); i++) {
-      Map<String, Semester> semesterMap = CollectUtils.newHashMap();
-      semesterMap.put("next", i + 1 < semesters.size() ? semesters.get(i + 1) : null);
-      semestersMap.put(semesters.get(i).getId().toString(), semesterMap);
-    }
-    return semestersMap;
+    return courseGradeDataHelper;
   }
 
   @Override
   public String getDataName() {
-    return "semesterMap";
+    return "semesterGroup";
   }
 
-  public void setEntityDao(EntityDao entityDao) {
-    this.entityDao = entityDao;
+  public void setCourseGradeDataHelper(CourseGradeDataHelper courseGradeDataHelper) {
+    this.courseGradeDataHelper = courseGradeDataHelper;
   }
 }
