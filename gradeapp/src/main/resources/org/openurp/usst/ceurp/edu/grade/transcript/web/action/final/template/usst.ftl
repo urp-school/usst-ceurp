@@ -55,7 +55,7 @@ table.listTable td{
     </table>
     [#assign stdGrades = grades.get(std)/]
     [#assign result = semesterGroup.courseGradeBy2Semester(stdGrades)/]
-    [#assign semesters = result.semesters?sort_by("beginOn")/]
+    [#assign semesters = (result.semesters?sort_by("beginOn"))?if_exists/]
     <table class="usst" width="100%" align="center">
       <tr valign="top">
       [#list semesters as semester]
