@@ -139,7 +139,7 @@ table.listTable td{
 
   <table ${style} width="100%">
     <tr>
-      <td align="right" colspan="8">上海理工大学继续教育学院&nbsp;&nbsp;<br>${(b.now?string('yyyy年MM月dd日'))!}&nbsp;&nbsp;</td>
+      <td align="right" colspan="8">上海理工大学继续教育学院&nbsp;&nbsp;<br>${((graduationMap[std.id?string].graduateOn?string("yyyy-MM-dd"))!b.now?string('yyyy年MM月dd日'))!}&nbsp;&nbsp;</td>
     </tr>
    </table>
    [#if std_has_next]
