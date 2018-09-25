@@ -13,13 +13,14 @@
 
   <modules>
     <module>gradeapp</module>
+    <module>courseapp</module>
   </modules>
 
   <properties>
     <downloadSources>true</downloadSources>
     <downloadJavadocs>false</downloadJavadocs>
     <mockito.version>1.9.5</mockito.version>
-    <openurp.api.version>0.1.3</openurp.api.version>
+    <openurp.api.version>0.1.4</openurp.api.version>
     <dwr.version>3.0.2-RELEASE</dwr.version>
     <spring.version>4.3.14.RELEASE</spring.version>
     <openurp.version>0.0.2-SNAPSHOT</openurp.version>
@@ -68,6 +69,21 @@
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
         <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.openurp.edu.course</groupId>
+        <artifactId>openurp-edu-course-schedule</artifactId>
+        <version>${openurp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.openurp.edu.course</groupId>
+        <artifactId>openurp-edu-course-election</artifactId>
+        <version>${openurp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.openurp.edu.course</groupId>
+        <artifactId>openurp-edu-course-teacher</artifactId>
+        <version>${openurp.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

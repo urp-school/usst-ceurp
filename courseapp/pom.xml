@@ -6,9 +6,9 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>org.openurp.usst.ceurp</groupId>
-  <artifactId>ceurp-usst-gradeapp</artifactId>
+  <artifactId>ceurp-usst-courseapp</artifactId>
   <packaging>war</packaging>
-  <name>OpenURP CE-Urp GradeApp</name>
+  <name>OpenURP CE-Urp CoureApp</name>
 
   <dependencies>
     <dependency>
@@ -16,24 +16,16 @@
       <artifactId>openurp-edu-nav-default</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-audit</artifactId>
+      <groupId>org.openurp.edu.course</groupId>
+      <artifactId>openurp-edu-course-schedule</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-course</artifactId>
+      <groupId>org.openurp.edu.course</groupId>
+      <artifactId>openurp-edu-course-election</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-report</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-teacher</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-makeup</artifactId>
+      <groupId>org.openurp.edu.course</groupId>
+      <artifactId>openurp-edu-course-teacher</artifactId>
     </dependency>
   </dependencies>
 </project>

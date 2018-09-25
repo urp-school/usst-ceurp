@@ -1,5 +1,10 @@
 [#ftl]
 [@b.head/]
+[#assign _pageSize = 50/]
+[#assign gradePerColumn = (_pageSize / 2)?int/]
+[#assign fontSize = 10/]
+[#assign style]style="font-size: ${fontSize}pt;font-weight: bolder;font-family:黑体;"[/#assign]
+[#assign width = "6%"/]
 <style>
 table.usst {
   ;
@@ -8,6 +13,7 @@ table.usst td {
   padding: 3px;
 }
 table.listTable {
+  font-family: 宋体;
   border-collapse: collapse;
   border-style:solid;
   border-width:1px;
@@ -21,14 +27,9 @@ table.listTable td{
   border-width:1px;
   border-color:#006CB2;
   padding: 0px;
+  font-size:${fontSize-2}pt;
 }
 </style>
-[#assign _pageSize = 50/]
-[#assign gradePerColumn = (_pageSize / 2)?int/]
-[#assign fontSize = 10/]
-[#assign style]style="font-size: ${fontSize}pt;font-weight: bolder;font-family:黑体;"[/#assign]
-[#assign width = "6%"/]
-
 [#assign spring = ['01','02','03','04','05','06','07']/]
 [#assign courseTypaAlias = {"专业基础类":"专基"}/]
 
@@ -40,7 +41,7 @@ table.listTable td{
         <td>姓名：${std.user.name}</td>
         <td>性别：${(std.person.gender.name)!}</td>
         <td>专业：[#assign majorName = std.state.major.name/][#if (majorName?last_index_of("（")>0)]${majorName?substring(0, majorName?last_index_of("（"))}[#else]${majorName}[/#if]</td>
-        <td>学历层次：${std.stdType.name}</td>
+        <td>学历层次：${std.span.name}</td>
         <td>学习形式：${(std.studyType.name)!}</td>
      <tr>
     </table>
