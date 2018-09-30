@@ -1,4 +1,4 @@
-[#ftl][#assign pt = 8/][#assign px = 12 / 9 * pt/]
+[#ftl][#assign pt = 10.5/][#assign px = 12 / 9 * pt/]
 [@b.head]
   <style>
     div.report {
@@ -15,7 +15,7 @@
     }
 
     .report-title {
-      font-size: 14pt;
+      font-size: 22pt;
       font-weight: bold;
     }
 
