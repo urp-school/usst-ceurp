@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.openurp</groupId>
     <artifactId>openurp-java-parent</artifactId>
-    <version>0.2.19</version>
+    <version>0.2.20</version>
   </parent>
   <groupId>org.openurp.usst</groupId>
   <artifactId>openurp-ceurp-parent</artifactId>
@@ -20,9 +20,9 @@
     <downloadSources>true</downloadSources>
     <downloadJavadocs>false</downloadJavadocs>
     <mockito.version>1.9.5</mockito.version>
-    <openurp.api.version>0.1.5</openurp.api.version>
+    <openurp.api.version>0.1.6-SNAPSHOT</openurp.api.version>
     <dwr.version>3.0.2-RELEASE</dwr.version>
-    <spring.version>4.3.14.RELEASE</spring.version>
+    <spring.version>4.3.19.RELEASE</spring.version>
     <openurp.version>0.0.2-SNAPSHOT</openurp.version>
   </properties>
 

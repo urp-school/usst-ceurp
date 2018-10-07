@@ -22,7 +22,7 @@ import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
 import org.beangle.commons.text.i18n.TextResource;
-import org.openurp.base.model.TimeSetting;
+import org.openurp.edu.base.model.TimeSetting;
 import org.openurp.edu.course.model.Session;
 import org.openurp.edu.course.util.ScheduleDigestor;
 
