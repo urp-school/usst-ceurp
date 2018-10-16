@@ -3,28 +3,28 @@
   <style>
     .report {
       width: 100%;
-      
+
       margin-left: auto;
       margin-right: auto;
-      
+
       font-family: 宋体;
       font-size: 12pt;
       text-align: center;
       vertical-align: middle;
     }
-    
+
     .report > .report-top {
       font-size: 10pt;
     }
-    
+
     .report > .report-header {
       margin-top: 10px;
       margin-bottom: 10px;
-      
+
       font-family: 黑体;
       font-size: 16pt;
     }
-    
+
     .report > .report-header td {
       padding-top: 0px;
       padding-left: 0px;
@@ -32,7 +32,7 @@
       padding-bottom: 2px;
       vertical-align: bottom;
     }
-    
+
     .report .report-table-row {
       height: 50px;
     }
@@ -46,11 +46,11 @@
       height: 175px;
       vertical-align: top;
     }
-    
-    
+
+
     .report .underline {
       display: inline-block;
-      
+
       border-bottom-width: 1px;
       border-bottom-style: solid;
       border-bottom-color: black;
@@ -105,7 +105,7 @@
       border-left-width: 0px;
       border-bottom-width: 0px;
     }
-    
+
     .report .report-foot {
       width: 60%;
       margin-left: 40%;
@@ -190,7 +190,7 @@
               <td width="54px">90-100</td>
               <td width="54px">最高分</td>
               <td width="54px">最低分</td>
-              <td width="54px">平均分</td> 
+              <td width="54px">平均分</td>
             </tr>
             <tr class="report-table-row">[#assign gradeSegStat = courseStat.getGradeSegStat(END_ID)?if_exists/]
               <td>人数</td>
@@ -281,7 +281,7 @@
           }
         });
       };[#assign perPX = 12 / 9/][#--12px = 9pt--]
-      
+
       $(document).ready(function() {
         resetFontSize($(".course-name"), 19, ${10 * perPX}, ${14 * perPX});
       });
