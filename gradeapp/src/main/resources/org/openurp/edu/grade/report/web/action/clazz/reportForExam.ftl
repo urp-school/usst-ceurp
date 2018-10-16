@@ -18,7 +18,7 @@
     }
 
     .report > .report-header {
-      margin-top: 10px;
+      margin-top: 5px;
       margin-bottom: 10px;
 
       font-family: 黑体;
