@@ -140,9 +140,9 @@
         <td>20</td><td class="underline" style="width: 30px;">${courseStat.clazz.semester.beginOn?string("YY")}</td><td>年</td><td class="underline" style="width: 30px;">${(courseStat.clazz.semester.beginOn?string("MM")?number lt 7)?string("春", "秋")}</td><td>季学期</td><td class="underline course-name" style="width: 200px; word-break: break-all; font-size: 12pt">${courseStat.clazz.course.name}</td><td>课程试卷分析表</td>
       </tr>
     </table>
-    <table class="listTable" align="center">
-      <tr class="c">
-        <td><span style="letter-spacing: 3px">教学</span>站</td>
+    <table class="listTable" align="center" style="width: 188mm">
+      <tr class="report-table-row">
+        <td width="59px"><span style="letter-spacing: 3px">教学</span>站</td>
         <td width="130px">${courseStat.clazz.teachDepart.name}</td>
         <td>课程代码</td>
         <td width="120px">${courseStat.clazz.course.code}</td>
