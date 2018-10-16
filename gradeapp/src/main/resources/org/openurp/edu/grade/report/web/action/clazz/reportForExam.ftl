@@ -137,7 +137,7 @@
     <div class="report-top"><span class="underline" style="${top_ul_style}"><br></span><span>上海理工大学继续教育学院成人高等学历教育<span class="underline" style="${top_ul_style}"><br></span></div>
     <table class="report-header" align="center">
       <tr style="line-height: 12pt;">
-        <td>20</td><td class="underline" style="width: 30px;">${courseStat.clazz.semester.beginOn?string("YY")}</td><td>年</td><td class="underline" style="width: 30px;">${(courseStat.clazz.semester.beginOn?string("MM")?number lt 7)?string("春", "秋")}</td><td>季学期</td><td class="underline course-name" style="width: 200px; word-break: break-all; font-size: 12pt">${courseStat.clazz.course.name}</td><td>课程试卷分析表</td>
+        <td>20</td><td class="underline" style="width: 30px;">${courseStat.clazz.semester.beginOn?string("YY")}</td><td>年</td><td class="underline" style="width: 30px;">${(courseStat.clazz.semester.beginOn?string("MM")?number lt 7)?string("春", "秋")}</td><td>季学期</td><td class="underline course-name" style="width: 200px; word-break: break-all">${courseStat.clazz.course.name}</td><td>课程试卷分析表</td>
       </tr>
     </table>
     <table class="listTable" align="center" style="width: 188mm">
@@ -264,26 +264,25 @@
         // var wordbox = $(".products .title");
         //最大高度 //var maxHeight = 30;
         //初始化文字大小为最小
-        wordbox.css("font-size", minSize + "px");
-        maxSize++;
         wordbox.each(function () {
-          //循环修改大小直至大于最大高度
-          for (var i = minSize; i < maxSize; i++) {
-            if ($(this).height() > maxHeight) {
-              //当容器高度大于最大高度的时候,上一个尝试的值就是最佳大小。
-              $(this).css("font-size", (i - 2) + "px");
-              //结束循环
-              break;
-            } else {
-              //如果小于最大高度,文字大小加1继续尝试
-              $(this).css("font-size", i + "px");
+          console.log({ "value": $(this).text(), "height": $(this).height(), "maxHeight": maxHeight });
+          if ($(this).height() > maxHeight) {
+            //循环修改大小直至大于最大高度
+            for (var i = maxSize; i > minSize; i--) {
+              console.log({ "value": $(this).text(), "i": i, "height": $(this).height(), "minSize": minSize, "maxSize": maxSize, "maxHeight": maxHeight });
+              if ($(this).height() > maxHeight) {
+                //当容器高度大于最大高度的时候,上一个尝试的值就是最佳大小。
+                $(this).css("font-size", i + "px");
+              } else {
+                break;
+              }
             }
           }
         });
       };[#assign perPX = 12 / 9/][#--12px = 9pt--]
 
       $(document).ready(function() {
-        resetFontSize($(".course-name"), 19, ${10 * perPX}, ${14 * perPX});
+        resetFontSize($(".course-name"), ${18 * perPX}, ${10 * perPX}, ${16 * perPX});
       });
     })
   </script>
