@@ -15,4 +15,8 @@
         </property>
     </bean>
 
+    <bean id="courseGradeCalculator">
+        <property name="delayIsGa" value="true"/>
+    </bean>
+
 </beans>
