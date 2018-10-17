@@ -47,7 +47,6 @@
       vertical-align: top;
     }
 
-
     .report .underline {
       display: inline-block;
 
@@ -265,11 +264,11 @@
         //最大高度 //var maxHeight = 30;
         //初始化文字大小为最小
         wordbox.each(function () {
-          console.log({ "value": $(this).text(), "height": $(this).height(), "maxHeight": maxHeight });
+          //console.log({ "value": $(this).text(), "height": $(this).height(), "maxHeight": maxHeight });
           if ($(this).height() > maxHeight) {
             //循环修改大小直至大于最大高度
             for (var i = maxSize; i > minSize; i--) {
-              console.log({ "value": $(this).text(), "i": i, "height": $(this).height(), "minSize": minSize, "maxSize": maxSize, "maxHeight": maxHeight });
+              //console.log({ "value": $(this).text(), "i": i, "height": $(this).height(), "minSize": minSize, "maxSize": maxSize, "maxHeight": maxHeight });
               if ($(this).height() > maxHeight) {
                 //当容器高度大于最大高度的时候,上一个尝试的值就是最佳大小。
                 $(this).css("font-size", i + "px");

@@ -16,24 +16,14 @@
       <artifactId>openurp-edu-nav-default</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-audit</artifactId>
+      <groupId>org.openurp.edu.course</groupId>
+      <artifactId>openurp-edu-course-core4j</artifactId>
+      <version>${openurp.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-course</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-report</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-teacher</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-makeup</artifactId>
+      <groupId>org.openurp.edu.exam</groupId>
+      <artifactId>openurp-edu-exam-web</artifactId>
+      <version>${openurp.version}</version>
     </dependency>
   </dependencies>
 </project>
