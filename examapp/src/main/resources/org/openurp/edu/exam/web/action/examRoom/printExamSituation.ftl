@@ -147,7 +147,7 @@
         <td>课程名称</td>
         <td>${activity.clazz.course.name}</td>
         <td>应到人数</td>
-        <td>${examRoom.stdCount}</td>
+        <td>${examRoom.courseStds.get(activity.clazz.course)?size}</td>
       </tr>
       <tr class="report-table-row">
         <td>考试地点</td>
