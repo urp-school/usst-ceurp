@@ -33,8 +33,8 @@ import org.openurp.edu.base.model.Semester;
 import org.openurp.edu.base.model.Squad;
 import org.openurp.edu.base.model.TimeSetting;
 import org.openurp.edu.course.model.Session;
+import org.openurp.edu.course.schedule.helper.DigestorHelper;
 import org.openurp.edu.course.schedule.web.action.CourseTableAction;
-import org.openurp.usst.ceurp.edu.course.schedule.helper.DigestorHelper;
 
 /**
  * @author zhouqi 2018年9月27日
