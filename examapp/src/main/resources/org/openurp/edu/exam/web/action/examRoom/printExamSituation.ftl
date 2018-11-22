@@ -166,6 +166,7 @@
       <tr style="height: 122mm;">
         <td colspan="6" style="position:relative;vertical-align: top">
           <div>考场记录<br>（如有违纪物证，请随附本表之后）</div>
+          <div style="padding-left: 3px;text-align: left">[#assign examStudents = examRoom.examStudents?sort_by(["examStatus", "id"])/][#assign hisExamStatusId = NORMAL/][#list examStudents as examStudent][#if examStudent.examStatus.id != NORMAL && examStudent.examStatus.id != ABSENT][#if examStudent.examStatus.id != hisExamStatusId]${examStudent.examStatus.name}名单：[/#if][#assign hisExamStatusId = examStudent.examStatus.id/]${examStudent.std.user.name}(${examStudent.std.user.code})[#if examStudent_has_next && examStudents[examStudent_index + 1].examStatus.id == hisExamStatusId],&nbsp;[#else]<br>[/#if][/#if][/#list]<br>缺考名单：</div>
           <div class="report-foot">
             <div class="report-foot-row">
               <div class="report-foot-row-td report-foot-row-left">监考人签名：</div>
