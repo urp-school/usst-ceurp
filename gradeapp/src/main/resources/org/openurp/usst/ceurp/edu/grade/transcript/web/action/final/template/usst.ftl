@@ -34,7 +34,7 @@ table.listTable td{
 [#assign courseTypaAlias = {"专业基础类":"专基"}/]
 
 [#list students as std]
-  <div align='center' style="font-size:${fontSize+2}pt;font-weight: bolder;font-family:黑体;margin-top: 50;margin-bottom: 10"><span style="letter-spacing: ${(fontSize) / 3}pt">上海理工大学继续教育学院学生成绩档案</span><span>表</span></div>
+  <div align='center' style="font-size:${fontSize+2}pt;font-weight: bolder;font-family:黑体;margin-top: 15mm;margin-bottom: 10"><span style="letter-spacing: ${(fontSize) / 3}pt">上海理工大学继续教育学院学生成绩档案</span><span>表</span></div>
     <table ${style} width="100%">
       <tr>
         <td>学号：${std.user.code}</td>
