@@ -40,7 +40,7 @@ table.listTable td{
         <td>学号：${std.user.code}</td>
         <td>姓名：${std.user.name}</td>
         <td>性别：${(std.person.gender.name)!}</td>
-        <td>专业：[#assign majorName = std.state.major.name/][#if (majorName?last_index_of("（")>0)]${majorName?substring(0, majorName?last_index_of("（"))}[#else]${majorName}[/#if]</td>
+        <td>专业：${std.state.major.name}</td>
         <td>学历层次：${std.level.name}</td>
         <td>学习形式：${(std.studyType.name)!}</td>
      <tr>
