@@ -118,7 +118,7 @@ table.listTable td{
       </tr>
     [#list externExamGrades.get(std)?if_exists as externExamGrade]
       <tr>
-        <td>英语证书类型:</td><td>${externExamGrade.subject.enName}</td><td>获得日期:</td><td>${(externExamGrade.examOn?string("yyyy-MM"))!}</td><td>证书编号:</td><td>${externExamGrade.certificate!""}</td><td>分数:</td><td>${externExamGrade.scoreText!}</td>
+        <td>英语证书类型:</td><td>${externExamGrade.subject.enName}</td><td>获得日期:</td><td>${(externExamGrade.acquiredOn?string("yyyy-MM"))!}</td><td>证书编号:</td><td>${externExamGrade.certificate!""}</td><td>分数:</td><td>${externExamGrade.scoreText!}</td>
       </tr>
     [/#list]
 
