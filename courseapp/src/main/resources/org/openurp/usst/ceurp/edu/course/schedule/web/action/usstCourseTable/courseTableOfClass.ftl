@@ -76,7 +76,7 @@
       [#assign max = courseTableMap[squad.id?string].max/]
       [#list 1..max as i]
       <tr>
-        [#if 1 == i]<td[#if max gt 1] rowspan="${max}"[/#if]><span class="px">${squad.grade}<br>${squad.major.shortName!(squad.major.name)}<br>${squad.span.name}<br>${squad.stdCount}人</span></td>[/#if]
+        [#if 1 == i]<td[#if max gt 1] rowspan="${max}"[/#if]><span class="px">${squad.grade}<br>${squad.major.shortName!(squad.major.name)}<br>${squad.level.name}<br>${squad.stdCount}人</span></td>[/#if]
         [#list weekTimes as weekTime]
         <td><span class="px">${courseInfo(squad, weekTime, i - 1)!}</span></td>
         [/#list]

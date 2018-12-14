@@ -12,7 +12,7 @@
      [@b.col property="name" title="attr.name" width="35%"]
        [@b.a href="!courseTable?setting.kind=class&setting.forSemester=1&semester.id=${semester.id}&ids=${squad.id}" target="_blank" title="查看班级课表"][@i18nName squad/][/@]
      [/@]
-     [@b.col property="span" title="entity.EduSpan" width="10%"]${(squad.span.name)!}[/@]
+     [@b.col property="level" title="entity.EducationLevel" width="10%"]${(squad.level.name)!}[/@]
      [@b.col property="stdType" title="entity.studentType" width="10%"]${(squad.stdType.name)!}[/@]
      [@b.col property="department" title="院系" width="15%"]${(squad.department.name)!}[/@]
      [@b.col property="major" title="entity.major" width="15%"]${(squad.major.name)!} ${(squad.direction.name)!}[/@]
