@@ -49,7 +49,7 @@
     [#local session = (courseTableMap[squad.id?string].sessionMap[weekTime.weekday.name + "|" + weekTime.beginAt][index])?if_exists/]
     [#if (session.id)?exists]
       [#local weeks = digestor.digest(session, ":weeks")?trim/]
-      [#local info = session.clazz.course.name + "<br>" + session.clazz.course.weekHours + "×" + session.clazz.course.weeks?default(0) + ("(" + weeks + "周)<br>")?if_exists + session.clazz.teacherNames + "<br>"/]
+      [#local info = session.clazz.course.name + "<br>" + session.clazz.course.weekHours + "×" + session.clazz.schedule.weeks?default(0) + ("(" + weeks + "周)<br>")?if_exists + session.clazz.teacherNames + "<br>"/]
       [#list session.rooms as room][#local info = info + (room_index gt 0)?string(",", "") + ((room.roomType.name)!) + room.name/][/#list]
     [/#if]
     [#return info/]
