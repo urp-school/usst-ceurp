@@ -67,19 +67,21 @@ table.listTable td{
         <td width="50%">
           <table style="font-size:${fontSize-2}pt" width="100%" class="listTable">
             <tr align="center">
-              <td colspan="8">${semester.schoolYear}学年</td>
+              <td colspan="10">${semester.schoolYear}学年</td>
             </tr>
             <tr align="center">
-              <td colspan="4" width="50%">春季</td>
-              <td colspan="4" width="50%">秋季</td>
+              <td colspan="5" width="50%">春季</td>
+              <td colspan="5" width="50%">秋季</td>
             </tr>
             <tr align="center">
               <td>课程名称</td>
-              <td  width="${width}" style="white-space: nowrap">学分</td>
+              <td width="${width}" style="white-space: nowrap">学分</td>
+              <td width="${width}" style="white-space: nowrap">学时</td>
               <td width="${width}" style="white-space: nowrap">得分</td>
               <td width="${width}" style="white-space: nowrap">类型</td>
               <td>课程名称</td>
               <td width="${width}" style="white-space: nowrap">学分</td>
+              <td width="${width}" style="white-space: nowrap">学时</td>
               <td width="${width}" style="white-space: nowrap">得分</td>
               <td width="${width}" style="white-space: nowrap">类型</td>
             </tr>
@@ -92,10 +94,12 @@ table.listTable td{
             <tr>
               <td style="text-align: left">${(firstHalf[rowIndex].course.name)!}</td>
               <td>${(firstHalf[rowIndex].course.credits)!}</td>
+              <td>${(firstHalf[rowIndex].course.creditHours)!}</td>
               <td>${(firstHalf[rowIndex].scoreText)!}</td>
               <td>${(courseTypaAlias[firstHalf[rowIndex].courseType.name]!(firstHalf[rowIndex].courseType.name[0..1]))!}</td>
               <td style="text-align: left">${(secondHalf[rowIndex].course.name)!}</td>
               <td>${(secondHalf[rowIndex].course.credits)!}</td>
+              <td>${(secondHalf[rowIndex].course.creditHours)!}</td>
               <td>${(secondHalf[rowIndex].scoreText)!}</td>
               <td>${(courseTypaAlias[secondHalf[rowIndex].courseType.name]!(secondHalf[rowIndex].courseType.name[0..1]))!}</td>
             </tr>
@@ -108,11 +112,11 @@ table.listTable td{
     [#assign semesters = []/]
     <table ${style} width="80%">
       <tr>
-        <td width="16%">平均分:</td><td width="20%">${(gpas.get(std).ga)!}</td>
+        <td width="16%">平均分:</td><td width="28%">${(gpas.get(std).ga)!}</td>
         <td></td>
         <td></td>
         <td></td>
-        <td width="18%"></td>
+        <td width="20%"></td>
         <td></td>
         <td></td>
       </tr>
@@ -141,7 +145,14 @@ table.listTable td{
 
   <table ${style} width="100%">
     <tr>
-      <td align="right" colspan="8">上海理工大学继续教育学院&nbsp;&nbsp;<br>${((graduationMap[std.id?string].graduateOn?string("yyyy-MM-dd"))!b.now?string('yyyy年MM月dd日'))!}&nbsp;&nbsp;</td>
+      <td align="right" colspan="8">上海理工大学继续教育学院&nbsp;&nbsp;<br>
+      [#if graduationMap[std.id?string].degreeAwardOn??]
+      ${(graduationMap[std.id?string].degreeAwardOn?string("yyyy-MM-dd"))!}
+      [#else]
+      ${((graduationMap[std.id?string].graduateOn?string("yyyy-MM-dd"))!b.now?string('yyyy-MM-dd'))!}
+      [/#if]
+      &nbsp;&nbsp;
+      </td>
     </tr>
    </table>
    [#if std_has_next]

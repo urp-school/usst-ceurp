@@ -240,7 +240,7 @@
         <td>
           <div class="report-foot">
             <div class="report-foot-row">
-              <div class="report-foot-row-td report-foot-row-left"><span style="letter-spacing: 6pt">指导教师签</span>名：</div>
+              <div class="report-foot-row-td report-foot-row-left"><span style="letter-spacing: 6pt">任课教师签</span>名：</div>
               <div class="report-foot-row-td report-foot-row-right"><span>20</span><span style="width: 25px;display: inline-block;"></span><span>年</span><span style="width: 25px;display: inline-block;"></span><span>月</span><span style="width: 25px;display: inline-block;"></span><span>日</span></div>
             </div>
             <div class="report-foot-row">
