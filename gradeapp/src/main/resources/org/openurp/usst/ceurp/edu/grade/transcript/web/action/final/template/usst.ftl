@@ -118,12 +118,13 @@ table.listTable td{
       </tr>
     [#list externExamGrades.get(std)?if_exists as externExamGrade]
       <tr>
-        <td>英语证书类型:</td><td>${externExamGrade.subject.enName}</td><td>获得日期:</td><td>${(externExamGrade.acquiredOn?string("yyyy-MM"))!}</td><td>证书编号:</td><td>${externExamGrade.certificate!""}</td><td>分数:</td><td>${externExamGrade.scoreText!}</td>
+        <td>英语证书类型:</td><td>${externExamGrade.subject.name}</td><td>获得日期:</td><td>${(externExamGrade.acquiredOn?string("yyyy-MM"))!}</td><td>证书编号:</td><td>${externExamGrade.certificate!""}</td><td>分数:</td><td>${externExamGrade.scoreText!}</td>
       </tr>
     [/#list]
 
     [#if (graduationMap[std.id?string].code)??]
-      <tr><td>毕业证书编号:</td><td>${graduationMap[std.id?string].code}</td>
+      <tr>
+        <td>毕业证书编号:</td><td>${graduationMap[std.id?string].code}</td>
         <td>毕业日期:</td><td>${(graduationMap[std.id?string].graduateOn?string("yyyy-MM-dd"))!}</td>
         <td></td><td></td><td></td><td></td>
       </tr>
