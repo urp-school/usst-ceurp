@@ -146,7 +146,7 @@ table.listTable td{
   <table ${style} width="100%">
     <tr>
       <td align="right" colspan="8">上海理工大学继续教育学院&nbsp;&nbsp;<br>
-      [#if graduationMap[std.id?string].degreeAwardOn??]
+      [#if (graduationMap[std.id?string].degreeAwardOn)??]
       ${(graduationMap[std.id?string].degreeAwardOn?string("yyyy-MM-dd"))!}
       [#else]
       ${((graduationMap[std.id?string].graduateOn?string("yyyy-MM-dd"))!b.now?string('yyyy-MM-dd'))!}
