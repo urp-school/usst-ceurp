@@ -28,17 +28,20 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.beangle.commons.bean.comparators.MultiPropertyComparator;
 import org.beangle.commons.collection.CollectUtils;
+import org.beangle.commons.dao.query.builder.Condition;
+import org.beangle.commons.dao.query.builder.OqlBuilder;
 import org.beangle.commons.lang.time.WeekTime;
 import org.openurp.edu.base.model.Semester;
 import org.openurp.edu.base.model.Squad;
 import org.openurp.edu.base.model.TimeSetting;
+import org.openurp.edu.course.model.Clazz;
 import org.openurp.edu.course.model.Session;
 import org.openurp.edu.course.schedule.helper.DigestorHelper;
 import org.openurp.edu.course.schedule.web.action.CourseTableAction;
+import org.openurp.edu.course.service.CourseLimitUtils;
 
 /**
  * @author zhouqi 2018年9月27日
- *
  */
 public class UsstCourseTableAction extends CourseTableAction {
 
@@ -54,9 +57,6 @@ public class UsstCourseTableAction extends CourseTableAction {
     Map<String, WeekTime> weekTimeMap = CollectUtils.newHashMap();
     List<WeekTime> weekTimes = CollectUtils.newArrayList();
 
-    Map<String, String> sessionClassMap = CollectUtils.newHashMap();
-
-    // FIXME 2018-09-21 zhouqi 不能在for循环中查询
     for (Squad squad : squades) {
       List<Session> courseActivities = teachResourceService.getSquadActivities(squad, null, semester);
       if (CollectionUtils.isNotEmpty(courseActivities)) {
@@ -67,26 +67,15 @@ public class UsstCourseTableAction extends CourseTableAction {
           public int compare(Session s1, Session s2) {
             int c_date = s1.getBeginAt().compareTo(s2.getBeginAt());
 
-            if (0 == c_date) {
-              return s1.getTime().getBeginAt().compareTo(s2.getTime().getBeginAt());
-            }
+            if (0 == c_date) { return s1.getTime().getBeginAt().compareTo(s2.getTime().getBeginAt()); }
 
             return c_date;
           }
         });
 
-        int max = 1;
-        String his = null;
         Map<String, List<Session>> sessionMap = CollectUtils.newHashMap();
         for (Session session : courseActivities) {
-          sessionClassMap.put(session.getId().toString(), session.getClass().getName() + "@" + Integer.toHexString(session.hashCode()));
           String curr = session.getTime().getWeekday().getName() + "|" + session.getTime().getBeginAt();
-          if (StringUtils.isBlank(his) || !StringUtils.equals(curr, his)) {
-            max = 1;
-          } else {
-            max++;
-          }
-          his = curr;
 
           if (!weekTimeMap.containsKey(curr)) {
             weekTimeMap.put(curr, session.getTime());
@@ -99,7 +88,26 @@ public class UsstCourseTableAction extends CourseTableAction {
         }
         Map<String, Object> dataMap = CollectUtils.newHashMap();
         dataMap.put("sessionMap", sessionMap);
+        int max = 0;
+        for (Map.Entry<String, List<Session>> e : sessionMap.entrySet()) {
+          if (e.getValue().size() > max) {
+            max = e.getValue().size();
+          }
+        }
         dataMap.put("max", max);
+
+        OqlBuilder<Clazz> clazzQuery = OqlBuilder.from(Clazz.class, "clazz");
+        clazzQuery.where("clazz.project = :project", getProject());
+        clazzQuery.where("clazz.semester =:semester", semester);
+        Condition con = CourseLimitUtils.build(squad, "lgi");
+        List<?> params = con.getParams();
+        clazzQuery.where(
+            "exists(from clazz.enrollment.restrictions lg join lg.items as lgi where (lgi.inclusive=true  and "
+                + con.getContent() + "))",
+            params.get(0), params.get(1), params.get(2));
+        clazzQuery.where("size(clazz.schedule.sessions)=0");
+        List<Clazz> noScheduled = entityDao.search(clazzQuery);
+        dataMap.put("noScheduled", noScheduled);
         courseTableMap.put(squad.getId().toString(), dataMap);
       }
     }
@@ -109,10 +117,8 @@ public class UsstCourseTableAction extends CourseTableAction {
 
       @Override
       public int compare(WeekTime wt1, WeekTime wt2) {
-        int result = wt1.getFirstDay().compareTo(wt2.getFirstDay());
-        if (0 == result) {
-          return wt1.getBeginAt().getValue() - wt2.getBeginAt().getValue();
-        }
+        int result = wt1.getWeekday().compareTo(wt2.getWeekday());
+        if (0 == result) { return wt1.getBeginAt().getValue() - wt2.getBeginAt().getValue(); }
         return result;
       };
     });
@@ -120,13 +126,10 @@ public class UsstCourseTableAction extends CourseTableAction {
     Collections.sort(realSquades, new MultiPropertyComparator("department.code,major.code,code"));
     put("squades", realSquades);
     put("weekTimes", weekTimes);
-    TimeSetting timeSetting = timeSettingService.getClosestTimeSetting(getProject(), semester, null);
-    put("timeSetting", timeSetting);
     put("courseTableMap", courseTableMap);
-    put("sessionClassMap", sessionClassMap);
 
     put("semester", semester);
-    put("digestor", new DigestorHelper(getTextResource(), timeSetting));
+    put("digestor", new DigestorHelper(getTextResource(), null));
     return forward();
   }
 }

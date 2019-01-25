@@ -74,14 +74,27 @@
       </tr>
       [/#if]
       [#assign max = courseTableMap[squad.id?string].max/]
+      [#assign rowspan=max /]
+      [#if courseTableMap[squad.id?string].noScheduled?size>0]
+        [#assign rowspan=rowspan+1 /]
+      [/#if]
       [#list 1..max as i]
       <tr>
-        [#if 1 == i]<td[#if max gt 1] rowspan="${max}"[/#if]><span class="px">${squad.grade}<br>${squad.major.shortName!(squad.major.name)}<br>${squad.level.name}<br>${squad.stdCount}人</span></td>[/#if]
+        [#if 1 == i]<td rowspan="${rowspan}"><span class="px">${squad.name}<br>${squad.level.name}<br>${squad.stdCount}人</span></td>[/#if]
         [#list weekTimes as weekTime]
         <td><span class="px">${courseInfo(squad, weekTime, i - 1)!}</span></td>
         [/#list]
       </tr>
       [/#list]
+      [#if rowspan>max]
+      <tr>
+        <td colspan="${weekTimes?size}">
+        [#list courseTableMap[squad.id?string].noScheduled as clazz]
+        ${clazz.course.name}${clazz.schedule.weeks}周[#list clazz.teachers as t]&nbsp;${t.name}[/#list][#if clazz_has_next]&nbsp;[/#if]
+         [/#list]
+        </td>
+      </tr>
+     [/#if]
       [#if squad_index % row == row - 1]
     </table>
       [/#if]
