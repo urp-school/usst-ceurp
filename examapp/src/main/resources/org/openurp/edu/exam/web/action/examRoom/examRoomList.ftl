@@ -60,8 +60,8 @@
       m.addItem("删除监考",action.multi('batchRemoveInvigilations',"确认删除？"));
       m.addItem("自动分配","autoAssignInvigilator()");
 
-      var m3=bar.addMenu("打印签名表", "signature()", "${b.theme.iconurl('actions/print.png')}");
-      m3.addItem("预览座位表", "seatReport()", "${b.theme.iconurl('actions/print.png')}");
+      var m3=bar.addMenu("打印签名表", "signature()", "action-print");
+      m3.addItem("预览座位表", "seatReport()", "action-print");
       m3.addItem("考场情况记录表", function() {
         var examRoomIds = bg.input.getCheckBoxValues("room.id");
         if (isBlank(examRoomIds)) {
@@ -71,7 +71,7 @@
         var form = document.roomListForm;
         form["room.ids"].value = examRoomIds;
         bg.form.submit(form, "${b.url("!printExamSituation")}", "_blank");
-      }, "${b.theme.iconurl('actions/print.png')}");
+      }, "action-print");
 
       function seatReport(){
         var examRoomIds = bg.input.getCheckBoxValues("room.id");
