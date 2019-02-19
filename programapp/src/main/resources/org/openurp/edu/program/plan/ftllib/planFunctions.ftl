@@ -138,7 +138,7 @@
             <td>&nbsp;</td>
         </tr>
     [#else]
-        [#list courseGroup.planCourses?sort_by(['course','code'])?sort_by(['terms']) as planCourse]
+        [#list courseGroup.planCourses?sort_by(['course','code'])?sort_by(['terms','value']) as planCourse]
            [#if !(term??) || term?? && term?length=0 ||term?? && planCourse.terms.contains(term?number)]
             [#assign courseCount = courseCount + 1]
             <tr>
