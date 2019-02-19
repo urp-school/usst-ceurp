@@ -17,7 +17,7 @@
                         <td rowspan="2" width=20%">${b.text("attr.courseName")}</td>
                         <td rowspan="2" width="5%">${b.text("attr.credit")}</td>
                         <td rowspan="2" width="5%">学时</td>
-                        <td colspan="3" width="16%">学时分配</td>
+                        <td colspan="3" width="15%">学时分配</td>
                         <td rowspan="2" width="5%">课程设计</td>
                         <td rowspan="2" width="5%">毕业设计</td>
                         <td colspan="${maxTerm}" width="30%">按学期学分分配</td>
@@ -41,7 +41,7 @@
                     <tr>
                         <td class="summary" colspan="${maxFenleiSpan + mustSpan}">${b.text("attr.cultivateScheme.allTotle")}</td>
                         <td class="credit_hour summary">${plan.credits!(0)}</td>
-                        <td class="credit_hour summary">&nbsp;</td>
+                        <td class="credit_hour summary">${(plan.credits!(0))*18}</td>
                         <td class="credit_hour summary">&nbsp;</td>
                         <td class="credit_hour summary">&nbsp;</td>
                         <td class="credit_hour summary">&nbsp;</td>
@@ -50,8 +50,6 @@
                     [#list 1..maxTerm as i]
                         <td class="credit_hour">${total_term_credit[i?string]}</td>
                     [/#list]
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
                     </tr>
                 </tbody>
             </table>

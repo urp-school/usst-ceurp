@@ -171,7 +171,6 @@
               [/#if]
             </td>
             [@courseTermInfoMacro planCourse /]
-            <td>[#if planCourse.compulsory && !courseGroup.compulsory]必修 [/#if][#if planCourse.remark?exists]${planCourse.remark!}[#else]&nbsp;[/#if]</td>
           </tr>
          [/#if]
         [/#list]
@@ -225,7 +224,7 @@
               ${totalCreditHours}
             </td>
             [#else]
-            <td>&nbsp;</td>
+            <td class="credit_hour">${(courseGroup.credits)*18}</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -233,7 +232,6 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             [@groupTermInfoMacro courseGroup /]
-            <td>&nbsp;</td>
         </tr>
     [/#if]
 [/#macro]
