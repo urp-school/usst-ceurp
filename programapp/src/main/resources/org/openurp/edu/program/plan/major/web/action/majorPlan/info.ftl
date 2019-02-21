@@ -66,6 +66,8 @@
         [@b.div style="width:95%;" href="/programDoc!info?majorPlan.id=${plan.id}"][/@]
     [/@]
     [#include "../majorPlanSearch/planInfoTable${planStyle}.ftl"/]
+    [#include "creditAllocationTable.ftl"/]
+    [#include "practiceArrangeTable.ftl"/]
 </div>
 
 <div style="width:100%;text-align:center;">
