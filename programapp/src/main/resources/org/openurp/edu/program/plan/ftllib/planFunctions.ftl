@@ -120,8 +120,18 @@
     [/#list]
 [/#macro]
 
+[#assign kksj_weeks=0][#--课程设计周数 --]
+[#assign bysj_weeks=0][#--毕业设计周数 --]
+[#assign total_credit_hours=0]
+[#assign total_1_hours=0][#--分类课时1 --]
+[#assign total_2_hours=0][#--分类课时1 --]
+[#assign total_3_hours=0][#--分类课时1 --]
+
 [#-- 需要完善，画出一个课程组 --]
 [#macro drawGroup courseGroup courseTermInfoMacro groupTermInfoMacro]
+
+[#local group_kksj_weeks=0][#--本组课程设计周数 --]
+[#local group_bysj_weeks=0][#--本组毕业设计周数 --]
 
 [#assign courseCount = 0 /]
     [#if isLeaf(courseGroup)]
@@ -144,7 +154,6 @@
             <tr>
             [@drawAllAncestor courseGroup /]
 
-            [#-- 存在非叶子节点的子组 add on 2012-04-11 --]
             [#local exists_nonleaf_child = false /]
             [#list courseGroup.children as c]
                 [#if !isLeaf(c) ][#local exists_nonleaf_child=true /][#break][/#if]
@@ -162,12 +171,14 @@
             <td class="credit_hour">${(planCourse.course.getHourById(3))!}</td>
             <td class="credit_hour">
               [#if (planCourse.course.name)?contains("课程设计")]
-                ${(planCourse.course.weeks)! }周
+                ${(planCourse.course.weeks)!}周
+                [#local group_kksj_weeks=group_kksj_weeks + ((planCourse.course.weeks)!0)]
               [/#if]
             </td>
             <td class="credit_hour">
-              [#if (planCourse.course.name)?contains("毕业论文")]
+              [#if (planCourse.course.name)?contains("毕业论文") || (planCourse.course.name)?contains("毕业设计")]
                 ${(planCourse.course.weeks)! }周
+                [#local group_bysj_weeks=group_bysj_weeks + ((planCourse.course.weeks)!0)]
               [/#if]
             </td>
             [@courseTermInfoMacro planCourse /]
@@ -190,7 +201,7 @@
               [#if courseGroup.compulsory]${courseGroup.credits}
               [#else]
                 <font color="#1F3D83">
-                [#if courseGroup.credits=0]${courseGroup.courseNum}门[#else]${courseGroup.credits}[/#if]
+                [#if courseGroup.credits=0]${courseGroup.courseCount}门[#else]${courseGroup.credits}[/#if]
                 </font>
               [/#if]
             </td>
@@ -200,39 +211,52 @@
               [#list courseGroup.planCourses as planCourse]
                 [#assign totalCreditHours = totalCreditHours + planCourse.course.creditHours]
               [/#list]
-              ${totalCreditHours}
+              [#assign total_credit_hours = total_credit_hours + totalCreditHours/]
+              [#if totalCreditHours>0]${totalCreditHours}[/#if]
             </td>
             <td class="credit_hour">
               [#assign totalCreditHours = 0]
               [#list courseGroup.planCourses as planCourse]
                   [#assign totalCreditHours = totalCreditHours + (planCourse.course.getHourById(1)?default(0))]
               [/#list]
-              ${totalCreditHours}
+              [#assign total_1_hours = total_1_hours + totalCreditHours/]
+              [#if totalCreditHours>0]${totalCreditHours}[/#if]
             </td>
             <td class="credit_hour">
               [#assign totalCreditHours = 0]
               [#list courseGroup.planCourses as planCourse]
                   [#assign totalCreditHours = totalCreditHours + (planCourse.course.getHourById(2)?default(0))]
               [/#list]
-              ${totalCreditHours}
+              [#assign total_2_hours = total_2_hours + totalCreditHours/]
+              [#if totalCreditHours>0]${totalCreditHours}[/#if]
             </td>
             <td class="credit_hour">
               [#assign totalCreditHours = 0]
               [#list courseGroup.planCourses as planCourse]
                   [#assign totalCreditHours = totalCreditHours + (planCourse.course.getHourById(3)?default(0))]
               [/#list]
-              ${totalCreditHours}
+              [#assign total_3_hours = total_3_hours + totalCreditHours/]
+              [#if totalCreditHours>0]${totalCreditHours}[/#if]
             </td>
             [#else]
             <td class="credit_hour">${(courseGroup.credits)*18}</td>
-            <td>&nbsp;</td>
+            <td class="credit_hour">
+            ${(courseGroup.credits)*18}
+            [#assign total_credit_hours = total_credit_hours + (courseGroup.credits)*18/]
+            [#assign total_1_hours = total_1_hours + (courseGroup.credits)*18/]
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             [/#if]
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td class="credit_hour">[#if group_kksj_weeks>0]${group_kksj_weeks}周[#else]&nbsp;[/#if]</td>
+            <td class="credit_hour">[#if group_bysj_weeks>0]${group_bysj_weeks}周[#else]&nbsp;[/#if]</td>
             [@groupTermInfoMacro courseGroup /]
         </tr>
+    [/#if]
+
+    [#if !(courseGroup.parent??)]
+      [#assign kksj_weeks=kksj_weeks + group_kksj_weeks]
+      [#assign bysj_weeks=bysj_weeks + group_bysj_weeks]
     [/#if]
 [/#macro]
 
@@ -260,11 +284,6 @@
 [#assign courseCount = 0 /]
 [#assign fenleiWidth = 10 /]
 
-[#--
-maxFenleiSpan:${maxFenleiSpan}<br>
-mustSpan:${mustSpan}
---]
-
 [#macro mergeCourseTypeCell plan t_planLevels bottomrows]
     function mergeCourseTypeCell(tableId) {
         var table = document.getElementById(tableId)
@@ -290,7 +309,7 @@ mustSpan:${mustSpan}
             }
         }
     }
-    mergeCourseTypeCell('planInfoTable${plan.id}');
+   mergeCourseTypeCell('planInfoTable${plan.id}');
 [/#macro]
 
 [#macro planSupTitle plan]

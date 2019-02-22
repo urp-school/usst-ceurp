@@ -41,12 +41,12 @@
                     <tr>
                         <td class="summary" colspan="${maxFenleiSpan + mustSpan}">${b.text("attr.cultivateScheme.allTotle")}</td>
                         <td class="credit_hour summary">${plan.credits!(0)}</td>
-                        <td class="credit_hour summary">${(plan.credits!(0))*18}</td>
-                        <td class="credit_hour summary">&nbsp;</td>
-                        <td class="credit_hour summary">&nbsp;</td>
-                        <td class="credit_hour summary">&nbsp;</td>
-                        <td class="credit_hour summary">&nbsp;</td>
-                        <td class="credit_hour summary">&nbsp;</td>
+                        <td class="credit_hour summary">${total_credit_hours}</td>
+                        <td class="credit_hour summary">[#if total_1_hours>0]${total_1_hours}[/#if]</td>
+                        <td class="credit_hour summary">[#if total_2_hours>0]${total_2_hours}[/#if]</td>
+                        <td class="credit_hour summary">[#if total_3_hours>0]${total_3_hours}[/#if]</td>
+                        <td class="credit_hour summary">${kksj_weeks}周</td>
+                        <td class="credit_hour summary">${bysj_weeks}周</td>
                     [#list 1..maxTerm as i]
                         <td class="credit_hour">${total_term_credit[i?string]}</td>
                     [/#list]
@@ -57,5 +57,5 @@
     </tr>
 </table>
 <script>
-[@mergeCourseTypeCell plan teachPlanLevels 2/]
+[@mergeCourseTypeCell plan teachPlanLevels 1/]
 </script>
