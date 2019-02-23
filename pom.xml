@@ -21,10 +21,6 @@
   <properties>
     <downloadSources>true</downloadSources>
     <downloadJavadocs>false</downloadJavadocs>
-    <mockito.version>1.9.5</mockito.version>
-    <openurp.api.version>0.6.0</openurp.api.version>
-    <dwr.version>3.0.2-RELEASE</dwr.version>
-    <spring.version>4.3.19.RELEASE</spring.version>
     <openurp.version>0.0.2-SNAPSHOT</openurp.version>
   </properties>
 
@@ -33,11 +29,6 @@
       <dependency>
         <groupId>org.openurp.edu.nav</groupId>
         <artifactId>openurp-edu-nav-default</artifactId>
-        <version>${openurp.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.openurp.edu.grade</groupId>
-        <artifactId>openurp-edu-grade-audit</artifactId>
         <version>${openurp.version}</version>
       </dependency>
       <dependency>
@@ -53,11 +44,6 @@
       <dependency>
         <groupId>org.openurp.edu.grade</groupId>
         <artifactId>openurp-edu-grade-teacher</artifactId>
-        <version>${openurp.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.openurp.edu.grade</groupId>
-        <artifactId>openurp-edu-grade-makeup</artifactId>
         <version>${openurp.version}</version>
       </dependency>
       <dependency>

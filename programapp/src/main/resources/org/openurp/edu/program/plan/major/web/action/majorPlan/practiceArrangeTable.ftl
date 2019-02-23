@@ -30,7 +30,7 @@
                 [#assign courseCount = 0 /]
                 [#list plan.topCourseGroups! as courseGroup]
                   [#list courseGroup.planCourses?sort_by(['course','code'])?sort_by(['terms','value']) as planCourse]
-                    [#if (planCourse.course.name)?contains("课程设计") || (planCourse.course.name)?contains("毕业论文") || (planCourse.course.name)?contains("实习")]
+                    [#if (planCourse.course.name)?contains("课程设计") || (planCourse.course.name)?contains("毕业论文") || (planCourse.course.name)?contains("毕业设计") || (planCourse.course.name)?contains("实习")]
                       [#assign courseCount = courseCount + 1]
                       <tr>
                         <td class="credit_hour">${courseCount }</td>
