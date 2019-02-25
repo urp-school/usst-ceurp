@@ -14,6 +14,7 @@
     [#assign bxllCreditMap = {}]     [#--必修理论每学期学分--]
     [#assign sxsjCreditMap = {}]     [#--必修实习设计每学期学分--]
     [#assign xxCreditMap = {}]       [#--选修每学期学分--]
+    [#assign totalCreditMap = {}]       [#--合计每学期学分--]
 
     [#assign bxllTotalCreditHour = 0][#--必修理论总学时--]
     [#assign sysjTotalCreditHour = 0][#--必修实验、上机总学时--]
@@ -63,6 +64,10 @@
       [/#if]
     [/#list]
 
+    [#list 1..maxTerm as i]
+        [#assign totalCreditMap = totalCreditMap + {i?string: ((bxllCreditMap[i?string]!0) + (xxCreditMap[i?string]!0) + (sxsjCreditMap[i?string]!0))}]
+    [/#list]
+
     [#list bxllCreditMap?keys as k]
       [#assign bxllTotalCredits =bxllTotalCredits + (bxllCreditMap[k]!0) ]
     [/#list]
@@ -79,9 +84,7 @@
                 <thead>
                     <tr align="center">
                         <td rowspan="2" colspan="2" width="30%"></td>
-                        [#assign total_term_credit={} /]
                         [#list 1..maxTerm as i ]
-                            [#assign total_term_credit=total_term_credit + {i:0} /]
                             <td width="[#if maxTerm?exists&&maxTerm!=0]${40/maxTerm}[#else]4[/#if]%" rowspan="2" ><p align="center">${i}</p></td>
                         [/#list]
                         <td colspan="3"  width="30%">合计</td>
@@ -104,7 +107,7 @@
                         <td class="credit_hour">${bxllTotalCredits}</td>
                         <td class="credit_hour">${bxllTotalCreditHour}</td>
                         <td rowspan="2" class="credit_hour">
-                          ${(((bxllTotalCreditHour+xxTotalCredits*18)*1.00/(totalCredits*18))*100)?string(".00")}%
+                          [#if totalCredits != 0]${(((bxllTotalCreditHour+xxTotalCredits*18)*1.00/(totalCredits*18))*100)?string(".00")}%[#else]&nbsp;[/#if]
                         </td>
                     </tr>
                     <tr align="center">
@@ -126,7 +129,7 @@
                         <td class="credit_hour">&nbsp;</td>
                         <td class="credit_hour">${sysjTotalCreditHour}</td>
                         <td rowspan="2" class="credit_hour">
-                        ${(((sysjTotalCreditHour+sxsjTotalCredits*18)*1.00/(totalCredits*18))*100)?string(".00")}%
+                        [#if totalCredits != 0]${(((sysjTotalCreditHour+sxsjTotalCredits*18)*1.00/(totalCredits*18))*100)?string(".00")}%[#else]&nbsp;[/#if]
                         </td>
                     </tr>
                     <tr align="center">
@@ -142,7 +145,9 @@
                     <tr align="center">
                         <td colspan="2"  >合计</td>
                         [#list 1..maxTerm as i]
-                          <td class="credit_hour">&nbsp;</td>
+                          <td class="credit_hour">
+                            ${totalCreditMap[i?string]!}
+                          </td>
                         [/#list]
                         <td class="credit_hour">${totalCredits}</td>
                         <td class="credit_hour">${totalCredits*18}</td>
