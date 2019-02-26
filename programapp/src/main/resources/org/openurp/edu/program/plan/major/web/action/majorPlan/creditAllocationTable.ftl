@@ -21,7 +21,7 @@
 
     [#function isSXSJ course]
       [#local name=course.name/]
-      [#return name?contains("课程设计")  ||  name?contains("毕业论文")  || name?contains("毕业设计") || name?contains("实习")]
+      [#return name?contains("课程设计")  ||  name?contains("毕业论文")  || name?contains("毕业设计") || name?contains("实习") || name?contains("毕业实践")]
     [/#function]
 
     [#list plan.topCourseGroups! as courseGroup]

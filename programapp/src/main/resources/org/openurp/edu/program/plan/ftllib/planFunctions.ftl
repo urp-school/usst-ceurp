@@ -170,7 +170,7 @@
             <td class="credit_hour">${(planCourse.course.getHourById(2))!}</td>
             <td class="credit_hour">${(planCourse.course.getHourById(3))!}</td>
             <td class="credit_hour">
-              [#if (planCourse.course.name)?contains("课程设计")]
+              [#if (planCourse.course.name)?contains("课程设计") || (planCourse.course.name)?contains("毕业实践")]
                 ${(planCourse.course.weeks)!}周
                 [#local group_kksj_weeks=group_kksj_weeks + ((planCourse.course.weeks)!0)]
               [/#if]
