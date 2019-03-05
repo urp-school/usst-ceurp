@@ -20,8 +20,7 @@
     [#assign sysjTotalCreditHour = 0][#--必修实验、上机总学时--]
 
     [#function isSXSJ course]
-      [#local name=course.name/]
-      [#return name?contains("课程设计")  ||  name?contains("毕业论文")  || name?contains("毕业设计") || name?contains("实习") || name?contains("毕业实践")]
+      [#return course.isPractical()]
     [/#function]
 
     [#list plan.topCourseGroups! as courseGroup]
