@@ -22,7 +22,7 @@
                       [#assign total_term_credit={} /]
                       [#list 1..maxTerm as i ]
                           [#assign total_term_credit=total_term_credit + {i:0} /]
-                          <td width="[#if maxTerm?exists&&maxTerm!=0]${40/maxTerm}[#else]4[/#if]%" rowspan="2" ><p align="center">${i}</p></td>
+                          <td width="[#if maxTerm?exists&&maxTerm!=0]${40/maxTerm}[#else]4[/#if]%"  ><p align="center">${i}</p></td>
                       [/#list]
                     </tr>
                 </thead>
