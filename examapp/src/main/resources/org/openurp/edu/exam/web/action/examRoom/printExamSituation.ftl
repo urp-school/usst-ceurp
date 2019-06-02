@@ -139,7 +139,7 @@
         <td style="width: 22mm">学年学期</td>
         <td style="width: 42.88mm;">${examRoom.semester.schoolYear}${examRoom.semester.name}</td>
         <td style="width: 21.9mm">考试日期<br>和时间</td>
-        <td style="font-size: 10pt">${examRoom.examOn?string("yyyy.MM.dd")}<br>${examRoom.beginAt}-${examRoom.endAt}</td>
+        <td style="font-size: 10pt">${activity.examOn?string("yyyy.MM.dd")}<br>${activity.beginAt}-${activity.endAt}</td>
       </tr>
       <tr class="report-table-row">
         <td>课程代码</td>
@@ -164,9 +164,21 @@
         <td colspan="6">考试纪律情况</td>
       </tr>
       <tr style="height: 122mm;">
+        [#assign examTakers={}]
+        [#list examRoom.examTakers as et]
+          [#if et.activity.id=activity.id]
+          [#if et.examStatus.id != NORMAL && et.examStatus.id != ABSENT]
+           [#assign examTakers=examTakers +{et.examStatus.name: ([et]+examTakers[et]![])}]
+          [/#if]
+         [/#if]
+        [/#list]
         <td colspan="6" style="position:relative;vertical-align: top">
           <div>考场记录<br>（如有违纪物证，请随附本表之后）</div>
-          <div style="padding-left: 3px;text-align: left">[#assign examTakers = activity.examTakers?sort_by(["examStatus", "id"])/][#assign hisExamStatusId = NORMAL/][#list examTakers as examTaker][#if examTaker.examStatus.id != NORMAL && examTaker.examStatus.id != ABSENT][#if examTaker.examStatus.id != hisExamStatusId]${examTaker.examStatus.name}名单：[/#if][#assign hisExamStatusId = examTaker.examStatus.id/]${examTaker.std.user.name}(${examTaker.std.user.code})[#if examTaker_has_next && examTakers[examTaker_index + 1].examStatus.id == hisExamStatusId],&nbsp;[#else]<br>[/#if][/#if][/#list]<br>缺考名单：</div>
+          <div style="padding-left: 3px;text-align: left">
+          [#list examTakers?keys as k]
+           ${k}名单：[#list examTakers[k] as et]${et.std.user.name}(${et.std.user.code})[#if et_has_next],&nbsp;[/#if][/#list]
+           <br>
+           [/#list]缺考名单：</div>
           <div class="report-foot">
             <div class="report-foot-row">
               <div class="report-foot-row-td report-foot-row-left">监考人签名：</div>
