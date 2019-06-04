@@ -121,9 +121,11 @@ table.listTable td{
         <td></td>
       </tr>
     [#list externExamGrades.get(std)?if_exists as externExamGrade]
+      [#if ((externExamGrade.subject.category.name)!'')?contains('英语')]
       <tr>
         <td>英语证书类型:</td><td>${externExamGrade.subject.name}</td><td>获得日期:</td><td>${(externExamGrade.acquiredOn?string("yyyy-MM"))!}</td><td>证书编号:</td><td>${externExamGrade.certificate!""}</td><td>分数:</td><td>${externExamGrade.scoreText!}</td>
       </tr>
+      [/#if]
     [/#list]
 
     [#if (graduationMap[std.id?string].code)??]
