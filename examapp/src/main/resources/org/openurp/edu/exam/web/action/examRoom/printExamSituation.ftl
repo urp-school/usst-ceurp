@@ -168,7 +168,7 @@
         [#list examRoom.examTakers as et]
           [#if et.activity.id=activity.id]
           [#if et.examStatus.id != NORMAL && et.examStatus.id != ABSENT]
-           [#assign examTakers=examTakers +{et.examStatus.name: ([et]+examTakers[et]![])}]
+           [#assign examTakers=examTakers +{et.examStatus.name: ([et]+examTakers[et.examStatus.name]![])}]
           [/#if]
          [/#if]
         [/#list]
