@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.beangle.commons.bean.comparators.MultiPropertyComparator;
 import org.beangle.commons.collection.CollectUtils;
 import org.beangle.commons.dao.query.builder.Condition;
@@ -33,12 +32,12 @@ import org.beangle.commons.dao.query.builder.OqlBuilder;
 import org.beangle.commons.lang.time.WeekTime;
 import org.openurp.edu.base.model.Semester;
 import org.openurp.edu.base.model.Squad;
-import org.openurp.edu.base.model.TimeSetting;
 import org.openurp.edu.course.model.Clazz;
 import org.openurp.edu.course.model.Session;
 import org.openurp.edu.course.schedule.helper.DigestorHelper;
 import org.openurp.edu.course.schedule.web.action.CourseTableAction;
 import org.openurp.edu.course.service.CourseLimitUtils;
+import org.openurp.edu.course.util.ScheduleDigestor;
 
 /**
  * @author zhouqi 2018年9月27日
@@ -58,7 +57,7 @@ public class UsstCourseTableAction extends CourseTableAction {
     List<WeekTime> weekTimes = CollectUtils.newArrayList();
 
     for (Squad squad : squades) {
-      List<Session> courseActivities = teachResourceService.getSquadActivities(squad, null, semester);
+      List<Session> courseActivities = ScheduleDigestor.merge(semester, teachResourceService.getSquadActivities(squad, null, semester), true, true);
       if (CollectionUtils.isNotEmpty(courseActivities)) {
         realSquades.add(squad);
         Collections.sort(courseActivities, new Comparator<Session>() {
