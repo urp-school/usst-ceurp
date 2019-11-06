@@ -79,7 +79,7 @@
       <div class="report-title">上海理工大学继续教育学院课程表</div>
       <table class="reportTable" align="center">
         <tr>
-          <td style="text-align: right; padding-right: 5px; min-width: 18mm; border-bottom-width: 0px"><span class="px">上课时间</span></td>
+          <td style="text-align: right; padding-right: 5px; width: 10%; border-bottom-width: 0px"><span class="px">上课时间</span></td>
           [#list weekTimes as weekTime]<td><span class="px">${weekTime.weekday.name}[#if weekTime.beginAt.hour lt 12]上午[#elseif weekTime.beginAt.hour lt 18]下午[#else]晚上[/#if]</span></td>[/#list]
         </tr>
         <tr>
@@ -94,7 +94,7 @@
         [/#if]
         [#list 1..max as i]
         <tr>
-          [#if 1 == i]<td rowspan="${rowspan}"><span class="px">${squad.name}<br>${squad.level.name}<br>${squad.stdCount}人</span></td>[/#if]
+          [#if 1 == i]<td rowspan="${rowspan}"><span class="px">${squad.name}<br>${squad.level.name}<br>${squadStdCounts.get(squad)}人</span></td>[/#if]
           [#list weekTimes as weekTime]
           <td><span class="px">${courseInfo(squad, weekTime, i - 1)!}</span></td>
           [/#list]

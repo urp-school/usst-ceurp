@@ -18,11 +18,8 @@
  */
 package org.openurp.usst.ceurp.edu.course.schedule.web.action;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.beangle.commons.bean.comparators.MultiPropertyComparator;
@@ -32,12 +29,16 @@ import org.beangle.commons.dao.query.builder.OqlBuilder;
 import org.beangle.commons.lang.time.WeekTime;
 import org.openurp.edu.base.model.Semester;
 import org.openurp.edu.base.model.Squad;
+import org.openurp.edu.base.model.Student;
+import org.openurp.edu.base.model.StudentState;
 import org.openurp.edu.course.model.Clazz;
 import org.openurp.edu.course.model.Session;
 import org.openurp.edu.course.schedule.helper.DigestorHelper;
 import org.openurp.edu.course.schedule.web.action.CourseTableAction;
 import org.openurp.edu.course.service.CourseLimitUtils;
 import org.openurp.edu.course.util.ScheduleDigestor;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * @author zhouqi 2018年9月27日
@@ -55,8 +56,9 @@ public class UsstCourseTableAction extends CourseTableAction {
 
     Map<String, WeekTime> weekTimeMap = CollectUtils.newHashMap();
     List<WeekTime> weekTimes = CollectUtils.newArrayList();
-
+    Map<Squad,Integer> squadStdCounts=CollectUtils.newHashMap();
     for (Squad squad : squades) {
+      squadStdCounts.put(squad,getInSchoolStudents(squad,semester).size());
       List<Session> courseActivities = ScheduleDigestor.merge(semester, teachResourceService.getSquadActivities(squad, null, semester), true, true);
       if (CollectionUtils.isNotEmpty(courseActivities)) {
         realSquades.add(squad);
@@ -126,9 +128,39 @@ public class UsstCourseTableAction extends CourseTableAction {
     put("squades", realSquades);
     put("weekTimes", weekTimes);
     put("courseTableMap", courseTableMap);
-
+    put("squadStdCounts",squadStdCounts);
     put("semester", semester);
     put("digestor", new DigestorHelper(getTextResource(), null));
     return forward();
+  }
+
+
+  private Set<Student> getInSchoolStudents(Squad squad, Semester semester) {
+    LocalDate beginOn = semester.getBeginOn().toLocalDate();
+    LocalDate endOn = semester.getEndOn().toLocalDate();
+    int days = (int) DAYS.between(beginOn, endOn);
+    days = days * 2 / 3;
+
+    Set<Student> stds = CollectUtils.newHashSet();
+    for (StudentState ss : squad.getStdStates()) {
+      if (ss.isInschool()) {
+        LocalDate sBeginOn = ss.getBeginOn().toLocalDate();
+        LocalDate sEndOn = ss.getEndOn().toLocalDate();
+        if (sBeginOn.isBefore(endOn) && beginOn.isBefore(sEndOn)) {
+          LocalDate minEndOn = endOn;
+          if (sEndOn.isBefore(minEndOn)) {
+            minEndOn = sEndOn;
+          }
+          LocalDate maxBeginOn = beginOn;
+          if (sBeginOn.isAfter(maxBeginOn)) {
+            maxBeginOn = sBeginOn;
+          }
+          if (DAYS.between(maxBeginOn, minEndOn) >= days) {
+            stds.add(ss.getStd());
+          }
+        }
+      }
+    }
+    return stds;
   }
 }
