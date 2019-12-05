@@ -12,9 +12,7 @@
 
     div.report {
       padding: 0px;
-      
       text-align: center;
-
       font-family: 宋体;
       font-size: ${pt}pt;
     }
@@ -29,7 +27,6 @@
       border-width: 1px;
       border-style: solid;
       border-color: black;
-
       min-width: 100%;
     }
 
@@ -37,18 +34,20 @@
       border-width: 1px;
       border-style: solid;
       border-color: black;
-
-      width: ${td_width};
-
       word-break: break-all;
     }
-
-    [#if pt lte 8]
-    span.px {
-      display: inline-block;
-      -webkit-transform: scale(${ px / 12 });
+    td[class=title]:before{
+      content: "";
+      position: absolute;
+      width: 1px;
+      height:155px;/*这里需要自己调整，根据td的宽度和高度*/
+      top:0;
+      left:0;
+      background-color: black;
+      display: block;
+      transform: rotate(-75deg);/*这里需要自己调整，根据线的位置*/
+      transform-origin: top;
     }
-    [/#if]
   </style>
 [/@]
   [@b.toolbar title="班级课程表" id="bar"]
@@ -60,7 +59,7 @@
     [#if session != "--"]
       [#local weeks = digestor.digest(session, ":weeks")?trim/]
       [#local info = session.clazz.course.name + "<br>" + session.clazz.schedule.weekHours + "×" + session.clazz.schedule.weeks?default(0) + ("(" + weeks + "周)<br>")?if_exists + session.clazz.teacherNames + "<br>"/]
-      [#list session.rooms as room][#local info = info + (room_index gt 0)?string(",", "") + ((room.roomType.name)!) + room.name/][/#list]
+      [#list session.rooms as room][#local info = info + (room_index gt 0)?string(",", "") + room.name/][/#list]
     [/#if]
     [#return info/]
   [/#function]
@@ -68,25 +67,20 @@
   <div class="report-frame">
     [#if weekTimes?size gt 0]
     [#assign row = 5/]
-    <div class="report" style="${div_report_style}">
-      [#list squades?sort_by(["code"]) as squad]
-        [#if squad_index % row == 0]
-          [#if squad_index gt 0]
-    </div>
-    <div style="PAGE-BREAK-AFTER: always"></div>
-    <div class="report" style="${div_report_style}">
-          [/#if]
-      <div class="report-title">上海理工大学继续教育学院课程表</div>
+     [#list squades?sort_by(["code"])?chunk(3) as pageSquads]
+     <div class="report" style="${div_report_style}">
+      <div class="report-title">上海理工大学继续教育学院课程表(${semester.schoolYear}学年${semester.name}学期)</div>
       <table class="reportTable" align="center">
         <tr>
-          <td style="text-align: right; padding-right: 5px; width: 10%; border-bottom-width: 0px"><span class="px">上课时间</span></td>
+          <td rowspan="2" class="title" style="width:150px;position: relative;">
+           <div style="float:right">上课时间</div><br/><div  style="float:left">班级</div>
+          </td>
           [#list weekTimes as weekTime]<td><span class="px">${weekTime.weekday.name}[#if weekTime.beginAt.hour lt 12]上午[#elseif weekTime.beginAt.hour lt 18]下午[#else]晚上[/#if]</span></td>[/#list]
         </tr>
         <tr>
-          <td style="text-align: left; padding-left: 5px; border-top-width: 0px"><span class="px">班级</span></td>
           [#list weekTimes as weekTime]<td><span class="px">${weekTime.beginAt}－${weekTime.endAt}</span></td>[/#list]
         </tr>
-        [/#if]
+      [#list pageSquads as squad]
         [#assign max = courseTableMap[squad.id?string].max/]
         [#assign rowspan=max /]
         [#if courseTableMap[squad.id?string].noScheduled?size>0]
@@ -109,13 +103,13 @@
           </td>
         </tr>
        [/#if]
-        [#if squad_index % row == row - 1]
-      </table>
-        [/#if]
+       [/#list]
+       </table>
+      </div><!--end page squads-->
+      [#if pageSquads_has_next]<div style="PAGE-BREAK-AFTER: always"></div>[/#if]
       [/#list]
-    </div>
     [#else]
     <div>当前所有班级没有对应的课程安排。</div>
     [/#if]
-  </div>
+  </div><!--end report-frame-->
 [@b.foot/]
