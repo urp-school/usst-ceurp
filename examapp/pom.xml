@@ -16,8 +16,8 @@
       <artifactId>openurp-edu-nav-default</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.course</groupId>
-      <artifactId>openurp-edu-course-core4j</artifactId>
+      <groupId>org.openurp.edu.clazz</groupId>
+      <artifactId>openurp-edu-clazz-core4j</artifactId>
       <version>${openurp.version}</version>
     </dependency>
     <dependency>

@@ -9,9 +9,9 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>org.openurp.usst.ceurp</groupId>
-  <artifactId>ceurp-usst-courseapp</artifactId>
+  <artifactId>ceurp-usst-clazzapp</artifactId>
   <packaging>war</packaging>
-  <name>OpenURP CE-Urp CoureApp</name>
+  <name>OpenURP CE-Urp ClazzApp</name>
 
   <dependencies>
     <dependency>
@@ -19,16 +19,16 @@
       <artifactId>openurp-edu-nav-default</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.course</groupId>
-      <artifactId>openurp-edu-course-schedule</artifactId>
+      <groupId>org.openurp.edu.clazz</groupId>
+      <artifactId>openurp-edu-clazz-schedule</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.course</groupId>
-      <artifactId>openurp-edu-course-election</artifactId>
+      <groupId>org.openurp.edu.clazz</groupId>
+      <artifactId>openurp-edu-clazz-election</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.course</groupId>
-      <artifactId>openurp-edu-course-teacher</artifactId>
+      <groupId>org.openurp.edu.clazz</groupId>
+      <artifactId>openurp-edu-clazz-teacher</artifactId>
     </dependency>
   </dependencies>
 </project>

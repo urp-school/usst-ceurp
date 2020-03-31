@@ -31,12 +31,12 @@ import org.openurp.edu.base.model.Semester;
 import org.openurp.edu.base.model.Squad;
 import org.openurp.edu.base.model.Student;
 import org.openurp.edu.base.model.StudentState;
-import org.openurp.edu.course.model.Clazz;
-import org.openurp.edu.course.model.Session;
-import org.openurp.edu.course.schedule.helper.DigestorHelper;
-import org.openurp.edu.course.schedule.web.action.CourseTableAction;
-import org.openurp.edu.course.service.CourseLimitUtils;
-import org.openurp.edu.course.util.ScheduleDigestor;
+import org.openurp.edu.clazz.model.Clazz;
+import org.openurp.edu.clazz.model.Session;
+import org.openurp.edu.schedule.helper.DigestorHelper;
+import org.openurp.edu.schedule.web.action.CourseTableAction;
+import org.openurp.edu.clazz.service.CourseLimitUtils;
+import org.openurp.edu.clazz.util.ScheduleDigestor;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
