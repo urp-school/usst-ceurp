@@ -28,7 +28,7 @@ import java.util.Map;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.beangle.commons.collection.CollectUtils;
-import org.openurp.edu.base.model.Semester;
+import org.openurp.base.edu.model.Semester;
 import org.openurp.edu.grade.course.model.CourseGrade;
 
 /**
