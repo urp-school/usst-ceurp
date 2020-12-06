@@ -191,21 +191,21 @@
         <tr>
             [@drawAllAncestor courseGroup /]
             <td colspan="${mustSpan + maxFenleiSpan - HierarchyFenleiSpanSum(maxFenleiSpan, courseGroup)}" class="credit_hour summary">
-                [#if courseGroup.compulsory]${b.text("attr.creditSubtotal")}[#else]
+                [#if courseGroup.autoAddup]${b.text("attr.creditSubtotal")}[#else]
                 <font color="#1F3D83">
                   [#if courseGroup.credits=0]应修门数[#else]${b.text("courseGroup.credits")}[/#if]
                 </font>
                 [/#if]
             </td>
             <td class="credit_hour summary">
-              [#if courseGroup.compulsory]${courseGroup.credits}
+              [#if courseGroup.autoAddup]${courseGroup.credits}
               [#else]
                 <font color="#1F3D83">
                 [#if courseGroup.credits=0]${courseGroup.courseCount}门[#else]${courseGroup.credits}[/#if]
                 </font>
               [/#if]
             </td>
-            [#if courseGroup.compulsory]
+            [#if courseGroup.autoAddup]
             <td class="credit_hour">
               [#assign totalCreditHours = 0]
               [#list courseGroup.planCourses as planCourse]
@@ -313,7 +313,7 @@
 [/#macro]
 
 [#macro planSupTitle plan]
-    状态：${plan.program.state.fullName}&nbsp;
+    状态：${plan.auditState.fullName}&nbsp;
     生效日期：${plan.program.beginOn?string('yyyy-MM-dd')}~${(plan.program.endOn?string('yyyy-MM-dd'))!}&nbsp;
     最后修改时间：${(plan.program.updatedAt?string('yyyy-MM-dd HH:mm:ss'))!}
 [/#macro]
@@ -321,4 +321,9 @@
 [#macro planTitle plan]
 ${plan.program.level.name}&nbsp;${plan.program.stdType.name}&nbsp;${plan.program.department.name}&nbsp;${plan.program.major.name}专业
 <br>${(plan.program.direction.name + "&nbsp;")!}${b.text('entity.program')}&nbsp;(${plan.program.grade})
+[/#macro]
+
+[#macro exePlanTitle plan]
+${plan.program.level.name}&nbsp;${plan.program.stdType.name}&nbsp;${plan.program.department.name}&nbsp;${plan.program.major.name}专业
+<br>${(plan.program.direction.name + "&nbsp;")!}培养计划(${plan.program.grade})
 [/#macro]

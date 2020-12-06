@@ -19,7 +19,7 @@
     [/#if]
 
     [@b.toolbar title=plan.program.name]
-        [#if plan.program.state == UNSUBMITTED || plan.program.state == REJECTED]
+        [#if plan.auditState == UNSUBMITTED || plan.auditState == REJECTED]
             bar.addItem("提交审核",    "applyAudit()");
         [/#if]
         [#if numericTerm]

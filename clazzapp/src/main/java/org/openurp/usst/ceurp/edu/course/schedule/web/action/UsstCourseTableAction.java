@@ -51,7 +51,7 @@ public class UsstCourseTableAction extends CourseTableAction {
   public String courseTableOfClass() {
     Semester semester = semesterService.getSemester(getIntId("semester"));
     Map<String, Object> courseTableMap = CollectUtils.newHashMap();
-    List<Squad> squades = entityDao.get(Squad.class, getIntIds("adminClass"));
+    List<Squad> squades = entityDao.get(Squad.class, getLongIds("adminClass"));
     List<Squad> realSquades = CollectUtils.newArrayList();
 
     Map<String, WeekTime> weekTimeMap = CollectUtils.newHashMap();

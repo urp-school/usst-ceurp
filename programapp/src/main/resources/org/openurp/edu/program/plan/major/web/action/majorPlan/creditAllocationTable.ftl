@@ -25,7 +25,7 @@
 
     [#list plan.topCourseGroups! as courseGroup]
       [#--必修课--]
-      [#if courseGroup.compulsory]
+      [#if courseGroup.autoAddup]
         [#list courseGroup.planCourses as planCourse]
           [#if !isSXSJ(planCourse.course)]
             [#assign sysjHours= planCourse.course.getHourById(2)?default(0) + planCourse.course.getHourById(3)?default(0)/]

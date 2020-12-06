@@ -87,7 +87,7 @@ div#exceptionStack {
 		<h4>
 			错误路径:
 			<%=request
-						.getAttribute("javax.servlet.forward.servlet_path")%></h4>
+						.getAttribute("jakarta.servlet.forward.servlet_path")%></h4>
 		<p>With the following stack trace:</p>
 		<%
 		  ByteArrayOutputStream ostr = new ByteArrayOutputStream();

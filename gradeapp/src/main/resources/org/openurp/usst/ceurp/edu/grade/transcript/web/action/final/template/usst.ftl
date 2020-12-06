@@ -149,9 +149,13 @@ table.listTable td{
     <tr>
       <td align="right" colspan="8">上海理工大学继续教育学院&nbsp;&nbsp;<br>
       [#if (graduationMap[std.id?string].degreeAwardOn)??]
-      ${(graduationMap[std.id?string].degreeAwardOn?string("yyyy-MM-dd"))!}
+        ${(graduationMap[std.id?string].degreeAwardOn?string("yyyy-MM-dd"))!}
+      [#elseif (graduationMap[std.id?string].graduateOn)??]
+        ${graduationMap[std.id?string].graduateOn?string("yyyy-MM-dd")}
+      [#elseif std.state.isValid(b.now)]
+        ${b.now?string('yyyy-MM-dd')}
       [#else]
-      ${((graduationMap[std.id?string].graduateOn?string("yyyy-MM-dd"))!b.now?string('yyyy-MM-dd'))!}
+        ${std.endOn?string('yyyy-MM-dd')}
       [/#if]
       &nbsp;&nbsp;
       </td>
