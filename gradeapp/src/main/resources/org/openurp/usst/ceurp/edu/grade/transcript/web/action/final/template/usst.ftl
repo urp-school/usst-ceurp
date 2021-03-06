@@ -29,6 +29,9 @@ table.listTable td{
   padding: 0px;
   font-size:${fontSize-2}pt;
 }
+@page{
+   size: landscape;
+}
 </style>
 [#assign spring = ['01','02','03','04','05','06','07']/]
 [#assign courseTypaAlias = {"专业基础类":"专基"}/]
