@@ -3,7 +3,7 @@
   <parent>
     <groupId>org.openurp</groupId>
     <artifactId>openurp-java-parent</artifactId>
-    <version>0.4.6</version>
+    <version>0.4.11</version>
   </parent>
   <groupId>org.openurp.usst</groupId>
   <artifactId>openurp-ceurp-parent</artifactId>
@@ -22,6 +22,8 @@
     <downloadSources>true</downloadSources>
     <downloadJavadocs>false</downloadJavadocs>
     <openurp.version>0.3.0-SNAPSHOT</openurp.version>
+    <beangle3.version>3.8.8</beangle3.version>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
 
   <dependencyManagement>

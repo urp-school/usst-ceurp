@@ -26,7 +26,7 @@ import org.beangle.commons.bean.comparators.MultiPropertyComparator;
 import org.beangle.commons.collection.CollectUtils;
 import org.beangle.commons.dao.query.builder.Condition;
 import org.beangle.commons.dao.query.builder.OqlBuilder;
-import org.beangle.commons.lang.time.WeekTime;
+import org.beangle.orm.hibernate.udt.WeekTime;
 import org.openurp.base.edu.model.Semester;
 import org.openurp.base.edu.model.Squad;
 import org.openurp.base.edu.model.Student;
