@@ -24,7 +24,7 @@ package org.openurp.usst.ceurp.edu.grade.transcript.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.openurp.base.edu.model.Student;
+import org.openurp.base.std.model.Student;
 import org.openurp.edu.grade.transcript.service.TranscriptDataProvider;
 import org.openurp.usst.ceurp.edu.grade.helper.CourseGradeDataHelper;
 

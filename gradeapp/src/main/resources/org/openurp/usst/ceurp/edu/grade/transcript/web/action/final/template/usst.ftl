@@ -40,8 +40,8 @@ table.listTable td{
   <div align='center' style="font-size:${fontSize+2}pt;font-weight: bolder;font-family:黑体;margin-top: 15mm;margin-bottom: 10"><span style="letter-spacing: ${(fontSize) / 3}pt">上海理工大学继续教育学院学生成绩档案</span><span>表</span></div>
     <table ${style} width="100%">
       <tr>
-        <td>学号：${std.user.code}</td>
-        <td>姓名：${std.user.name}</td>
+        <td>学号：${std.code}</td>
+        <td>姓名：${std.name}</td>
         <td>性别：${(std.person.gender.name)!}</td>
         <td>专业：${std.state.major.name}</td>
         <td>学历层次：${std.level.name}</td>
@@ -96,12 +96,12 @@ table.listTable td{
             [#list 0..maxRow - 1 as rowIndex]
             <tr>
               <td style="text-align: left">${(firstHalf[rowIndex].course.name)!}</td>
-              <td>${(firstHalf[rowIndex].course.credits)!}</td>
+              <td>${(firstHalf[rowIndex].course.defaultCredits)!}</td>
               <td>${(firstHalf[rowIndex].course.creditHours)!}</td>
               <td>${(firstHalf[rowIndex].scoreText)!}</td>
               <td>${(courseTypaAlias[firstHalf[rowIndex].courseType.name]!(firstHalf[rowIndex].courseType.name[0..1]))!}</td>
               <td style="text-align: left">${(secondHalf[rowIndex].course.name)!}</td>
-              <td>${(secondHalf[rowIndex].course.credits)!}</td>
+              <td>${(secondHalf[rowIndex].course.defaultCredits)!}</td>
               <td>${(secondHalf[rowIndex].course.creditHours)!}</td>
               <td>${(secondHalf[rowIndex].scoreText)!}</td>
               <td>${(courseTypaAlias[secondHalf[rowIndex].courseType.name]!(secondHalf[rowIndex].courseType.name[0..1]))!}</td>

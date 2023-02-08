@@ -7,6 +7,6 @@
                            http://www.directwebremoting.org/schema/spring-dwr
                            http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd">
 
-  <bean id="usst.ceurp.edu.course.schedule-service" class="org.openurp.usst.ceurp.edu.course.schedule.UsstScheduleModule"/>
+  <bean id="usst.ceurp.edu.schedule-service" class="org.openurp.usst.ceurp.edu.schedule.UsstScheduleModule"/>
 
 </beans>

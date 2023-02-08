@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.openurp.usst.ceurp.edu.course.schedule.web.action;
+package org.openurp.usst.ceurp.edu.schedule.web.action;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -28,9 +28,9 @@ import org.beangle.commons.dao.query.builder.Condition;
 import org.beangle.commons.dao.query.builder.OqlBuilder;
 import org.beangle.orm.hibernate.udt.WeekTime;
 import org.openurp.base.edu.model.Semester;
-import org.openurp.base.edu.model.Squad;
-import org.openurp.base.edu.model.Student;
-import org.openurp.base.edu.model.StudentState;
+import org.openurp.base.std.model.Squad;
+import org.openurp.base.std.model.Student;
+import org.openurp.base.std.model.StudentState;
 import org.openurp.edu.clazz.model.Clazz;
 import org.openurp.edu.clazz.model.Session;
 import org.openurp.edu.schedule.helper.DigestorHelper;
@@ -103,7 +103,7 @@ public class UsstCourseTableAction extends CourseTableAction {
         Condition con = CourseLimitUtils.build(squad, "lgi");
         List<?> params = con.getParams();
         clazzQuery.where(
-            "exists(from clazz.enrollment.restrictions lg join lg.items as lgi where (lgi.inclusive=true  and "
+            "exists(from clazz.enrollment.restrictions lg join lg.items as lgi where (lgi.included=true  and "
                 + con.getContent() + "))",
             params.get(0), params.get(1), params.get(2));
         clazzQuery.where("size(clazz.schedule.sessions)=0");
@@ -133,7 +133,6 @@ public class UsstCourseTableAction extends CourseTableAction {
     put("digestor", new DigestorHelper(getTextResource(), null));
     return forward();
   }
-
 
   private Set<Student> getInSchoolStudents(Squad squad, Semester semester) {
     LocalDate beginOn = semester.getBeginOn().toLocalDate();

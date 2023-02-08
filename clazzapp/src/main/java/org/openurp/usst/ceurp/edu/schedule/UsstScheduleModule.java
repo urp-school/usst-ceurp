@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.openurp.usst.ceurp.edu.course.schedule;
+package org.openurp.usst.ceurp.edu.schedule;
 
 import org.beangle.commons.inject.bind.AbstractBindModule;
-import org.openurp.usst.ceurp.edu.course.schedule.web.action.UsstCourseTableAction;
+import org.openurp.usst.ceurp.edu.schedule.web.action.UsstCourseTableAction;
 
 /**
  * @author zhouqi 2018年9月27日

@@ -29,7 +29,7 @@ import org.beangle.commons.collection.Order;
 import org.beangle.commons.dao.EntityDao;
 import org.beangle.commons.dao.query.builder.OqlBuilder;
 import org.openurp.base.edu.model.Semester;
-import org.openurp.base.edu.model.Student;
+import org.openurp.base.std.model.Student;
 import org.openurp.edu.grade.transcript.service.TranscriptDataProvider;
 
 /**

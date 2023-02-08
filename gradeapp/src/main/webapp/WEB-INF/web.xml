@@ -56,7 +56,7 @@
   </listener>
 
   <listener>
-    <listener-class>org.openurp.app.util.UrpPropertiesExporter</listener-class>
+    <listener-class>org.beangle.ems.app.util.EmsPropertiesExporter</listener-class>
   </listener>
 
   <listener>
