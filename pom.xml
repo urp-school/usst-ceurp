@@ -21,7 +21,7 @@
     <downloadSources>true</downloadSources>
     <downloadJavadocs>false</downloadJavadocs>
     <openurp.version>0.4.0-SNAPSHOT</openurp.version>
-    <beangle3.version>3.10.0-SNAPSHOT</beangle3.version>
+    <beangle3.version>3.10.0</beangle3.version>
     <maven.javadoc.skip>true</maven.javadoc.skip>
   </properties>
 

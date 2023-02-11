@@ -15,10 +15,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.openurp.edu.nav</groupId>
-      <artifactId>openurp-edu-nav-default</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.openurp.edu.clazz</groupId>
       <artifactId>openurp-edu-clazz-schedule</artifactId>
     </dependency>
