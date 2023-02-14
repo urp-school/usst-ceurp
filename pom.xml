@@ -28,11 +28,6 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.openurp.edu.nav</groupId>
-        <artifactId>openurp-edu-nav-default</artifactId>
-        <version>${openurp.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.openurp.edu.grade</groupId>
         <artifactId>openurp-edu-grade-course</artifactId>
         <version>${openurp.version}</version>
